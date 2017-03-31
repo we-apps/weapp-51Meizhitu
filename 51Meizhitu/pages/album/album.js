@@ -18,7 +18,7 @@ Page({
         //请求数据
         var that = this
         wx.request({
-        url:app.globalData.api.meizhiurl_detail.replace("%id%",this.data.id),
+        url:app.globalData.api.meizhiurl+"detail"+"?d="+this.data.id,
           success:function(ret){
             ret = ret['data']
             if(ret['code'] == 0){
@@ -63,8 +63,6 @@ Page({
         this.setData({
           album:album
         })
-      
-      
     },
     preiviewwImage(e){
       wx.previewImage({

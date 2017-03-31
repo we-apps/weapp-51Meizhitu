@@ -5,8 +5,17 @@ var dialog = require("../../utils/dialog.js")
 var wxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 
 Page({
+   data: {
+    contentList:[],
+    currentType:wx.getStorageSync('currentType'),
+    types:[]
+  },
   //加载第一个类型的列表
   onLoad:function(){
+    this.setData({
+       types:wx.getStorageSync('types') ? wx.getStorageSync('types') : app.globalData.types
+    })
+    
     if(!this.data.currentType){
       let that = this
       this.data.types.every(function(item){
@@ -19,7 +28,11 @@ Page({
           }
       })
     }
-    this.getList(this.data.currentType)
+    
+    if(this.data.currentType){
+        this.getList(this.data.currentType)
+    }
+
     //添加通知监听
     wxNotificationCenter.addNotification("typesChangeNotification",this.typesChangeNotificationHandler,this)
   },
@@ -45,7 +58,7 @@ Page({
               })
             }else{
               setTimeout(function(){
-                dialog.toast("网络出错啦~")
+                dialog.toast("网络超时啦~")
               },1)
             }
           },
@@ -79,11 +92,11 @@ Page({
     console.log("gotoAlbum");
     let param = e.currentTarget.dataset, 
     title = param.title, 
-    id=param.id
+    id=param.id.replace(/[^0-9]/ig,"")
     console.log("param: " + param);
     console.log("title: " + title);
     console.log("id: " + id);
-    var url = "../album/album?title="+title+"&id="+id.replace(".","##");
+    var url = "../album/album?title="+title+"&id="+id;
     console.log("ready");
     wx.navigateTo({
       url:url,
@@ -97,10 +110,5 @@ Page({
         console.log('跳转到news页面完成') // complete
       }
     })
-  },
-  data: {
-    contentList:[],
-    currentType:wx.getStorageSync('currentType'), 
-    types:wx.getStorageSync('types') ? wx.getStorageSync('types') : app.globalData.types
   }
 })

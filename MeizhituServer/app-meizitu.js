@@ -49,6 +49,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/tags', function(req, res){
+    console.log("get tags");
     res.header("Content-Type", "application/json; charset=utf-8");
     superagent.get(baseUrl)
     .charset('gb2312')
@@ -71,15 +72,18 @@ app.get('/tags', function(req, res){
                 items.push({
                     title : $element.text(),
                     href : hrefStr,
-                    cid : cid,
+                    value : cid,
+                    is_show: true,
                 });
             }
         });
         res.send({code: successCode, msg: "", data:items});
+        console.log('types: ' + JSON.stringify(items));
     });
 });
 
 app.get('/girls', function(req, res){
+    console.log("get girls");
     var cid = req.query.c;
     var mid = req.query.m;
     var page = req.query.p;
@@ -98,7 +102,7 @@ app.get('/girls', function(req, res){
     .end(function (err, sres) {
         if (err) {
             console.log('ERR: ' + err);
-            return next(err);
+            // return next(err);
         }
         var $ = cheerio.load(sres.text);
         var items = [];
@@ -129,23 +133,25 @@ app.get('/girls', function(req, res){
             }
         });
         res.json({code: successCode, msg: "", mid: mid, data:items});
+        console.log('girls data: ' + JSON.stringify(items));
     });
 });
 
 app.get('/detail', function(req, res){
-    var url = req.query.d;
+    console.log("get detail");
+    var cid = req.query.d;
 
-    console.log("url: " + url);
+    console.log("cid: " + cid);
 
-    url = !isEmpty(url) ? url : 'http://www.meizitu.com/a/5334.html';
+    var route = '/a/' + cid + '.html';
     res.header("Content-Type", "application/json; charset=utf-8");
-    console.log(url);
-    superagent.get(url)
+    console.log(baseUrl+route);
+    superagent.get(baseUrl+route)
     .charset('gb2312')
     .end(function (err, sres) {
         if (err) {
             console.log('ERR: ' + err);
-            return next(err);
+            // return next(err);
         }
         var $ = cheerio.load(sres.text);
         var items = [];
@@ -169,10 +175,11 @@ app.get('/detail', function(req, res){
             title = $subElement.text();
         });
         res.json({code: successCode, msg: "", title: title, data:items});
+        console.log('datail data: ' + JSON.stringify(items));
     });
 });
 
-var server = app.listen(8080, function(){
+var server = app.listen(process.env.PORT || 8080, function(){
     var host = server.address().address;
     var port = server.address().port;
     console.log("应用实例，访问地址为：http://%s:%s",host,port);

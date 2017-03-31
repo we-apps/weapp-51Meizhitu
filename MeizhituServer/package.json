@@ -1,14 +1,15 @@
 {
-  "name": "weapp-girls",
+  "name": "weapp-meizhitu",
   "version": "1.0.0",
-  "description": "weapp-girls",
+  "description": "weapp-meizhitu",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app-meizitu.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/litt1e-p/weapp-girls.git"
+    "url": "git+https://github.com/litt1e-p/weapp-meizhitu.git"
   },
   "keywords": [
     "weapp"
@@ -16,9 +17,9 @@
   "author": "litt1e-p",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/litt1e-p/weapp-girls/issues"
+    "url": "https://github.com/litt1e-p/weapp-meizhitu/issues"
   },
-  "homepage": "https://github.com/litt1e-p/weapp-girls#readme",
+  "homepage": "https://github.com/litt1e-p/weapp-meizhitu#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "cheerio": "^0.22.0",
