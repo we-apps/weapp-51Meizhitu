@@ -23,6 +23,7 @@ Page({
             ret = ret['data']
             if(ret['code'] == 0){
               var imgList = ret['data'];
+              console.log("imgList: " + JSON.stringify(imgList));
               var imgObjList = [];
               imgList.forEach(function(item,index){
                 imgObjList.push({
@@ -31,6 +32,7 @@ Page({
                       h:375
                 })
               })
+              console.log("imgObjList: " + JSON.stringify(imgObjList));
               that.setData({
                 album:imgObjList,
                 albumUrlList:imgList,
