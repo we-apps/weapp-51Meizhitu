@@ -112,7 +112,7 @@ app.get('/girls', function(req, res){
             var thumbImgSrc = $subElement.attr('src');
             var titleEle = $subElement.attr('alt').match(/<b>(\w+)<\/b>/);
             items.push({
-                title : !isEmpty(titleEle) ? titleEle[1] : '123',
+                title : !isEmpty(titleEle) ? titleEle[1] : '妹纸',
                 href : $element.find('.pic a').attr('href'),
                 // largeSrc : isEmpty(thumbImgSrc) ? "" : thumbImgSrc.replace('limg', '01'),
                 largeSrc : thumbImgSrc,
@@ -155,26 +155,27 @@ app.get('/detail', function(req, res){
         }
         var $ = cheerio.load(sres.text);
         var items = [];
+        var imgList = [];
         var title = "";
         $('#picture p img').each(function (idx, element) {
             var $element = $(element);
             var imgSrc = $element.attr('src');
             // var titleEle = $subElement.attr('alt').match(/<b>(\w+)<\/b>/);
-            items.push({
+            imgList.push(
                 // title : !isEmpty(titleEle) ? titleEle[1] : '',
                 // href : $element.find('.pic a').attr('href'),
                 // largeSrc : isEmpty(thumbImgSrc) ? "" : thumbImgSrc.replace('limg', '01'),
                 // largeSrc : thumbImgSrc,
                 // thumbSrc : thumbImgSrc,
-                imgSrc : imgSrc,
-            });
+                imgSrc
+            );
         });
         $('#maincontent .postmeta .metaRight h2').each(function (idx, element) {
             var $element = $(element);
             var $subElement = $element.find('a');
             title = $subElement.text();
         });
-        res.json({code: successCode, msg: "", title: title, data:items});
+        res.json({code: successCode, msg: "", title: title, data:{imgList:imgList}});
         console.log('datail data: ' + JSON.stringify(items));
     });
 });

@@ -19,11 +19,10 @@
     <block wx:for="{{contentList}}" wx:key="">
       <view class="beauty_item" data-id="{{item.href}}" data-title="{{item.title}}" bindtap="gotoAlbum">
         <image src="{{item.thumbSrc}}" mode="aspectFill"></image>
-        <text>{{item.title}}</text>
-    </view>
+        <text class="title">{{item.title}}</text>
+      </view>
     </block>
     
   </view>
-  
   
 </view>

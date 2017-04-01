@@ -22,7 +22,10 @@ Page({
           success:function(ret){
             ret = ret['data']
             if(ret['code'] == 0){
-              var imgList = ret['data'];
+              that.setData({
+                  title:ret['title'],
+              })
+              var imgList = ret['data']['imgList'];
               console.log("imgList: " + JSON.stringify(imgList));
               var imgObjList = [];
               imgList.forEach(function(item,index){

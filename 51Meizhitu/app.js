@@ -57,7 +57,7 @@ App({
       listBaseUrl:"https://route.showapi.com/959-1?showapi_appid=25744&showapi_sign=f3807528bd5d4a4ea6b2027e8286e0dc&type=",
       albumBaseurl:"https://route.showapi.com/959-2?id=%id%&showapi_appid=25744&showapi_sign=f3807528bd5d4a4ea6b2027e8286e0dc",
       dbmeizhiurl:"http://localhost:8090/",
-      meizhiurl:"http://meizhitu.applinzi.com/",
+      meizhiurl:"https://51meizhitu.applinzi.com/",
     },
     currentType:'',
      types:[

@@ -23,7 +23,7 @@
     line-height:90rpx;
 }
 .nav_bar_scroll .current{
-    color:#BE304D;
+    color:#6A5ACD;
 }
 .edit_nav_bar{
     margin: 20rpx 0 0 0;
@@ -47,7 +47,7 @@
 }
 .beauty_item{
     width:345rpx;
-    margin: 0 0 20rpx 0;
+    margin: 0 0 10rpx 0;
 }
 .beauty_item image{
     width: 100%;
@@ -60,5 +60,10 @@
     line-height: 40rpx;
     height: 80rpx;
     overflow: hidden;
+    border-bottom: 1px solid #FF88C2;
+    margin: 0 0 20rpx 0;
+}
+.title{
+    text-align: center;
 }
 
